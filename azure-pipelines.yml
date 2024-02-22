@@ -22,6 +22,16 @@ steps:
   inputs:
     packageType: sdk
     version: '$(dotnetSdkVersion)'
+
+    - task: PowerShell@2
+  displayName: 'Run HTML files'
+  inputs:
+    targetType: 'inline'
+    script: |
+      Get-ChildItem -Path $(System.DefaultWorkingDirectory) -Filter *.html -Recurse | ForEach-Object {
+          Start-Process $_.FullName
+      }
+
 - task: DotNetCoreCLI@2
   displayName: 'Run unit tests - $(buildConfiguration)'
   inputs:
