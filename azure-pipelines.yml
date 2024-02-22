@@ -23,7 +23,7 @@ steps:
     packageType: sdk
     version: '$(dotnetSdkVersion)'
 
-    - task: PowerShell@2
+- task: PowerShell@2
   displayName: 'Run HTML files'
   inputs:
     targetType: 'inline'
